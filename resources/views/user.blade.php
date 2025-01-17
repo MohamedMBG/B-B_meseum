@@ -12,27 +12,33 @@
             font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Dark background */
-            color: #ffffff; /* White text */
+            background-color: #121212;
+            /* Dark background */
+            color: #ffffff;
+            /* White text */
         }
 
         /* Profile Container */
         .profile-container {
             max-width: 450px;
             width: 100%;
-            background: #1e1e2f; /* Dark blue background */
+            background: #1e1e2f;
+            /* Dark blue background */
             border-radius: 16px;
             box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
             overflow: hidden;
-            margin: 100px auto 40px; /* Adjusted margin for navbar */
+            margin: 100px auto 40px;
+            /* Adjusted margin for navbar */
         }
 
         /* Profile Header */
         .profile-header {
             text-align: center;
-            background: linear-gradient(135deg, #1a73e8, #0d47a1); /* Dark blue gradient */
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            /* Dark blue gradient */
             color: white;
-            padding: 40px 20px 80px; /* Increased padding at the bottom to make room for the image */
+            padding: 40px 20px 80px;
+            /* Increased padding at the bottom to make room for the image */
             position: relative;
         }
 
@@ -40,7 +46,8 @@
             margin: 0;
             font-size: 26px;
             font-weight: 600;
-            z-index: 0; /* Ensure the header text doesn't overlap the image */
+            z-index: 0;
+            /* Ensure the header text doesn't overlap the image */
             position: relative;
         }
 
@@ -49,8 +56,10 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-top: -60px; /* Adjusted negative margin */
-            z-index: 1; /* Ensure the image appears above the header */
+            margin-top: -60px;
+            /* Adjusted negative margin */
+            z-index: 1;
+            /* Ensure the image appears above the header */
             position: relative;
         }
 
@@ -58,7 +67,8 @@
             width: 120px;
             height: 120px;
             border-radius: 50%;
-            border: 4px solid #1e1e2f; /* Dark blue border */
+            border: 4px solid #1e1e2f;
+            /* Dark blue border */
             object-fit: cover;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -79,11 +89,13 @@
             margin: 10px 0 5px;
             font-size: 24px;
             font-weight: 600;
-            color: #ffffff; /* White text */
+            color: #ffffff;
+            /* White text */
         }
 
         .profile-info p {
-            color: #aaa; /* Light gray text */
+            color: #aaa;
+            /* Light gray text */
             margin: 5px 0;
             font-size: 16px;
         }
@@ -97,26 +109,45 @@
         }
 
         .profile-info .user-phone i {
-            color: #1a73e8; /* Blue color for icon */
+            color: #1a73e8;
+            /* Blue color for icon */
             font-size: 18px;
+        }
+
+
+
+        .profile-info .user-email {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .profile-info .user-email i {
+            color: #1a73e8;
+            /* Blue color for icon */
         }
 
         /* Additional Info Section */
         .additional-info {
             padding: 20px;
-            background: #2a2a3d; /* Darker blue background */
+            background: #2a2a3d;
+            /* Darker blue background */
             border-top: 1px solid #444;
         }
 
         .additional-info h3 {
             font-size: 20px;
             font-weight: 500;
-            color: #ffffff; /* White text */
+            color: #ffffff;
+            /* White text */
             margin-bottom: 15px;
         }
 
         .additional-info p {
-            color: #aaa; /* Light gray text */
+            color: #aaa;
+            /* Light gray text */
             font-size: 14px;
             line-height: 1.6;
         }
@@ -125,7 +156,8 @@
         .edit-profile-button {
             display: block;
             width: 100%;
-            background: linear-gradient(135deg, #1a73e8, #0d47a1); /* Dark blue gradient */
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            /* Dark blue gradient */
             color: white;
             padding: 12px;
             border: none;
@@ -141,7 +173,8 @@
 
         .edit-profile-button:hover {
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.5); /* Blue shadow */
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.5);
+            /* Blue shadow */
         }
 
         .edit-profile-button:active {
@@ -151,7 +184,8 @@
         /* Responsive Design */
         @media (max-width: 480px) {
             .profile-container {
-                margin: 80px 10px 20px; /* Adjusted margin for mobile */
+                margin: 80px 10px 20px;
+                /* Adjusted margin for mobile */
             }
 
             .profile-header h1 {
@@ -179,6 +213,11 @@
                 font-size: 13px;
             }
         }
+
+        .additional-info {
+            text-align: center;
+            /* Centers the text horizontally */
+        }
     </style>
 </head>
 
@@ -205,18 +244,16 @@
                 <i class="fas fa-phone"></i>
                 <p>{{ $user->phone }}</p>
             </div>
+            <div class="user-email">
+                <i class="fas fa-envelope"></i>
+                <p>{{ $user->email }}</p>
+            </div>
         </div>
 
         <!-- Additional Info Section -->
         <div class="additional-info">
-            <h3>About Me</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            <p>This user is anartists in the B&B meseum.</p>
         </div>
-
-        <!-- Edit Profile Button -->
-        <a href="#" class="edit-profile-button">
-            <i class="fas fa-edit"></i> Edit Profile
-        </a>
     </div>
 </body>
 

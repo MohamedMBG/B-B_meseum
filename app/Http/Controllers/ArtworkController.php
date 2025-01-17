@@ -8,21 +8,24 @@ use App\Models\Categorie;
 
 class ArtworkController extends Controller
 {
+    //cette fonction permet aux utilisateurs de voir tous les arts de tous les artistes
     public function showArtworks()
     {
         $artworks = artwork::all();
         return view('gallery', ["artworks" => $artworks]);
     }
 
+    // on va ustiliser cette fonction pour l'affichage des categories dans les options ( dans la page pour uploader un art )
     public function create()
     {
-        $categories = Categorie::all(); // Fetch all categories for the dropdown
+        $categories = Categorie::all(); 
         return view('upload', compact('categories'));
     }
 
+    // store fonciton on va l'utiliser dna sle form pour uploader une oeuvre 
     public function store(Request $request)
     {
-        // Validate the input
+        // la validation des informations
         $request->validate([
             'title' => 'required|string|max:255',
             'description' => 'required|string',
@@ -31,20 +34,20 @@ class ArtworkController extends Controller
             'category_id' => 'required|exists:categories,id',
         ]);
 
-        // Store the uploaded image in the public storage
+        // sauvegarder l'image dans le path storage/public
         $imagePath = $request->file('image')->store('artworks', 'public');
 
-        // Create a new artwork record in the database
+        // Creer un nouveau record des artwork
         \App\Models\Artwork::create([
             'title' => $request->title,
             'description' => $request->description,
             'image_path' => $imagePath,
             'dimensions' => $request->dimensions,
-            'user_id' => session('logged_in_user')->id, // Assuming user ID is stored in the session
+            'user_id' => session('logged_in_user')->id, // on va avoir l'id d'utilisateir qui a uploader l'oeuvre depuis la session
             'category_id' => $request->category_id,
         ]);
 
-        // Redirect back with a success message
-        return redirect()->route('upload.form')->with('success', 'Artwork uploaded successfully!');
+        // la redirection avec un message de success
+        return redirect()->route('upload.form')->with('succes', 'oeuvre uploader avec succes!');
     }
 }

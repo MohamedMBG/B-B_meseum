@@ -165,26 +165,45 @@
 </head>
 
 <body>
+    <!-- Inclusion de la barre de navigation -->
     @include('components.nav')
+
     <header class="header">
         <h1>Featured Artists</h1>
         <p class="subtitle">Discover the talented artists whose works grace our museum's collection</p>
     </header>
 
+    <!-- Conteneur principal pour la liste des artistes -->
     <div class="container">
+
+        <!-- Boucle pour afficher chaque artiste  Pour chaque artiste dans la collection, le code à l'intérieur de la boucle est exécuté. -->
         @foreach($artists as $artist)
         <div class="card">
+
             <div class="image-container">
-            <img src="{{ asset('storage/' . $artist->profile_image) }}" alt="{{ $artist->nom }} {{ $artist->prenom }}" width="100">
+                <!-- 
+                    src="{{ asset('storage/' . $artist->profile_image) }}" : 
+                    - `asset()` est une fonction helper Laravel qui génère une URL absolue pour un fichier dans le dossier `public`.
+                    - `storage/` est le dossier où les fichiers uploadés sont stockés.
+                    - `$artist->profile_image` est le chemin de l'image de profil de l'artiste.
+                -->
+                <img src="{{ asset('storage/' . $artist->profile_image) }}" alt="{{ $artist->nom }} {{ $artist->prenom }}" width="100">
             </div>
+
             <div class="artist-infos">
                 <h2 class="artist-name">{{ $artist->nom }} {{ $artist->prenom }}</h2>
+                <!-- 
+                    {{ $artist->nom }} {{ $artist->prenom }} : 
+                    - Affiche le nom et le prénom de l'artiste.
+                -->
                 <div class="buttons">
                     <a href="tel:{{ $artist->phone }}" class="button call">
                         Contact
-                    </a>
-                    <a href="/artist/{{ $artist->id }}" class="button profile">
-                        View Profile
+                        <!-- 
+                        href="tel:{{ $artist->phone }}" : 
+                        - Crée un lien pour appeler le numéro de téléphone de l'artiste.
+                        - `tel:` est un protocole pour les liens de numéros de téléphone.
+                        -->
                     </a>
                 </div>
             </div>

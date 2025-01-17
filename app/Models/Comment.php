@@ -7,17 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Comment extends Model
 {
 
+    // Champs autorisés pour l'assignation
     protected $fillable = ['user_id', 'content'];
-    
-    // Define the relationship with the User (N:1) - Many comments can be written by one user
+
+    // Relation "belongsTo" avec le modèle User : un commentaire est écrit par un utilisateur
     public function user()
     {
         return $this->belongsTo(User::class); // Each comment is written by a user
     }
 
-    // Define the relationship with the Artwork (N:1) - Many comments can belong to one artwork
-    public function artwork()
-    {
-        return $this->belongsTo(Artwork::class); // Each comment belongs to an artwork
-    }
 }

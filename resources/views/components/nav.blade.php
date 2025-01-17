@@ -163,18 +163,21 @@
 </head>
 
 <body>
-
+    <!-- Barre de navigation -->
     <nav>
         <div class="upper-nav">
             <button class="menu-toggle"><i class="fas fa-bars"></i></button>
             <h1 class="logo">B&B Museum of Art</h1>
             <div class="nav-icons">
+                <!-- Lien pour uploader une œuvre -->
                 <a href="/upload">
                     <i class="fas fa-plus"></i>
                 </a>
+                <!-- Lien vers le profil utilisateur (utilise une route Laravel) -->
                 <a href="{{ route('user.profile') }}">
                     <i class="fas fa-user"></i>
                 </a>
+                <!-- Lien pour se déconnecter (utilise une route Laravel) -->
                 <a href="{{ route('logout') }}">
                     <i class="fas fa-sign-out-alt"></i>
                 </a>

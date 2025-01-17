@@ -1,22 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -201,72 +182,82 @@
 </head>
 
 <body>
+    <!-- Inclusion de la barre de navigation -->
+    <!-- Le composant 'nav' est inclus ici pour afficher la barre de navigation. -->
     @include('components.nav')
 
     <div class="container">
+        <!-- Titre principal de la page -->
         <h1>Upload Artwork</h1>
 
-        <!-- Display success or error messages -->
+        <!-- Affichage des messages de succès ou d'erreur -->
+        <!-- Si une session contient un message de succès, il sera affiché ici en vert. -->
         @if(session('success'))
-            <div style="color: green;">{{ session('success') }}</div>
-        @endif
-        @if($errors->any())
-            <div style="color: red;">
-                <ul>
-                    @foreach($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
+        <div style="color: green;">
+            {{ session('success') }} <!-- Message de succès envoyé depuis le contrôleur -->
+        </div>
         @endif
 
-        <!-- Upload Form -->
+        <!-- Vérification de la présence d'erreurs de validation -->
+        @if($errors->any())
+        <div style="color: red;">
+            <ul>
+                <!-- Affichage de toutes les erreurs sous forme de liste -->
+                @foreach($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+
+        <!-- Formulaire d'upload -->
         <form action="{{ route('upload.submit') }}" method="POST" enctype="multipart/form-data">
+            <!-- Jeton CSRF pour sécuriser les requêtes POST -->
             @csrf
 
-            <!-- Title -->
+            <!-- Champ pour le titre de l'œuvre -->
             <div>
-                <label for="title">Title</label>
-                <input type="text" name="title" id="title" value="{{ old('title') }}" required>
+                <label for="title">Title</label> <!-- Étiquette pour le champ du titre -->
+                <input type="text" name="title" id="title" required> <!-- Champ de saisie requis -->
             </div>
 
-            <!-- Description -->
+            <!-- Champ pour la description de l'œuvre -->
             <div>
-                <label for="description">Description</label>
-                <textarea name="description" id="description" rows="5" required>{{ old('description') }}</textarea>
+                <label for="description">Description</label> <!-- Étiquette pour la description -->
+                <textarea name="description" id="description" rows="5" required></textarea>
+                <!-- Zone de texte avec 5 lignes par défaut -->
             </div>
 
-            <!-- Image Upload -->
+            <!-- Champ pour l'upload d'image -->
             <div>
-                <label for="image">Artwork Image</label>
-                <input type="file" name="image" id="image" required>
+                <label for="image">Artwork Image</label> <!-- Étiquette pour l'image -->
+                <input type="file" name="image" id="image" required> <!-- Champ de téléchargement d'image requis -->
             </div>
 
-            <!-- Dimensions -->
+            <!-- Champ pour saisir les dimensions de l'œuvre -->
             <div>
                 <label for="dimensions">Dimensions</label>
-                <input type="text" name="dimensions" id="dimensions" value="{{ old('dimensions') }}" placeholder="e.g., 20x30 cm" required>
+                <input type="text" name="dimensions" id="dimensions" placeholder="e.g., 500x500 px" required>
+                <!-- Champ de saisie avec un exemple sous forme de placeholder -->
             </div>
 
-            <!-- Category Dropdown -->
+            <!-- Menu déroulant pour sélectionner une catégorie -->
             <div>
-                <label for="category_id">Category</label>
-                <select name="category_id" id="category_id" required>
+                <label for="category_id">Category</label> <!-- Étiquette pour la catégorie -->
+                <select name="category_id" id="category_id" required> <!-- Champ de sélection requis -->
                     <option value="" disabled selected>Select a category</option>
+                    <!-- Boucle pour générer les options de catégorie -->
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
 
-            <!-- Submit Button -->
+            <!-- Bouton pour soumettre le formulaire -->
             <div>
                 <button type="submit">Upload Artwork</button>
             </div>
         </form>
     </div>
-
 </body>
-
 </html>
-

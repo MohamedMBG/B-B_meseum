@@ -306,78 +306,80 @@
                 font-size: 1rem;
             }
         }
+
         .comments-section {
-        padding: 20px;
-        background-color: #f8f9fa;
-        border-radius: 8px;
-        margin: 20px 0;
-    }
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
 
-    .comment-form {
-        margin-bottom: 20px;
-    }
-
-    .comment-textarea {
-        width: 100%;
-        padding: 10px;
-        border-radius: 4px;
-        border: 1px solid #ccc;
-        font-size: 16px;
-        resize: vertical;
-    }
-
-    .submit-btn {
-        background-color: #0073e6;
-        color: #fff;
-        border: none;
-        padding: 10px 20px;
-        border-radius: 4px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-top: 10px;
-    }
-
-    .submit-btn:hover {
-        background-color: #005bb5;
-    }
-
-    .comments-table {
-        width: 100%;
-        border-collapse: collapse;
-        margin-top: 20px;
-    }
-
-    .comments-table th,
-    .comments-table td {
-        padding: 12px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-
-    .comments-table th {
-        background-color: #0073e6;
-        color: #fff;
-    }
-
-    .comments-table tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    @media (max-width: 768px) {
-        .comments-table th,
-        .comments-table td {
-            padding: 8px;
+        .comment-form {
+            margin-bottom: 20px;
         }
 
         .comment-textarea {
-            font-size: 14px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+            resize: vertical;
         }
 
         .submit-btn {
-            font-size: 14px;
-            padding: 8px 16px;
+            background-color: #0073e6;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 10px;
         }
-    }
+
+        .submit-btn:hover {
+            background-color: #005bb5;
+        }
+
+        .comments-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .comments-table th,
+        .comments-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comments-table th {
+            background-color: #0073e6;
+            color: #fff;
+        }
+
+        .comments-table tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        @media (max-width: 768px) {
+
+            .comments-table th,
+            .comments-table td {
+                padding: 8px;
+            }
+
+            .comment-textarea {
+                font-size: 14px;
+            }
+
+            .submit-btn {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+        }
     </style>
 
     <!-- ************************************************************* END OF CSS **************************************************************** -->
@@ -486,8 +488,13 @@
     </section>
 
     <section class="comments-section">
+        <!-- Formulaire pour soumettre un commentaire -->
+
         <form action="/Home" method="POST" class="comment-form">
+            <!-- Jeton CSRF (Cross-Site Request Forgery) requis pour sécuriser les requêtes POST dans Laravel -->
             @csrf
+
+            <!-- Zone de texte où l'utilisateur peut écrire son commentaire -->
             <textarea
                 placeholder="Type your comment here..."
                 name="comment"
@@ -498,7 +505,10 @@
             <button type="submit" class="submit-btn">Submit</button>
         </form>
 
+        <!-- Tableau des commentaires soumis -->
         <table class="comments-table">
+            <!-- En-tête du tableau contenant les colonnes pour afficher les détails des commentaires -->
+
             <thead>
                 <tr>
                     <th>Username</th>
@@ -507,6 +517,7 @@
                 </tr>
             </thead>
             <tbody>
+                <!-- Boucle pour parcourir la collection de commentaires -->
                 @foreach ($Comments as $Comment)
                 <tr>
                     <td>{{ $Comment['user']}}</td>
